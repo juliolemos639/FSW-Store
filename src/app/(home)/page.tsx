@@ -1,15 +1,23 @@
-"use client";
-
 import Image from "next/image";
 import Categories from "./components/categories";
+import { prismaClient } from "@/lib/prisma";
+import ProductList from "./components/product-list";
 
 // Notion
 
 // https://narrow-beach-a00.notion.site/Primeira-Aula-9d64b6a7fbe84ebb90ebc6498a00000f
 
-export default function Home() {
+export default async function Home() {
+  const deals = await prismaClient.product.findMany({
+    where: {
+      discountPercentage: {
+        gt: 0,
+      },
+    },
+  });
+
   return (
-    <div className="p-5">
+    <div>
       <Image
         src="/Banner-home-01.png"
         alt="Até 55% de desconto esse mês"
@@ -18,8 +26,11 @@ export default function Home() {
         className="h-auto w-full"
         sizes="100vw"
       />
-      <div className="mt-8">
+      <div className="mt-8 px-5">
         <Categories />
+      </div>
+      <div className="mt-8">
+        <ProductList products={deals} />
       </div>
     </div>
   );

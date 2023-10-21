@@ -11,6 +11,8 @@ import { createCheckout } from "@/actions/checkout";
 import { loadStripe } from "@stripe/stripe-js";
 
 // npm install @stripe/stripe-js
+// stripe listen --forward-to localhost:3000/api/order/payment-success
+// copiar a secret
 
 const Cart = () => {
   const { products, subtotal, total, totalDiscount } = useContext(CartContext);

@@ -14,7 +14,6 @@ const SheetTrigger = SheetPrimitive.Trigger;
 const SheetClose = SheetPrimitive.Close;
 
 const SheetPortal = ({
-  //acerto
   // @ts-expect-error
   className,
   ...props
